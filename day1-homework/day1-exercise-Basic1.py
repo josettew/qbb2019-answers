@@ -9,5 +9,11 @@ else:
     f = sys.stdin #otherwise set f = <, take previous output and pipe into the command
 count = 0 #starting point
 for i, line in enumerate(f): 
-    count +=1 #add 1 for each line, starting at 0
+    if line.startswith("@"):
+        continue
+    fields = line.split("\t")
+    if fields[2] == "*":
+        continue
+    else:
+        count +=1 #add 1 for each line, starting at 0
 print(count)
