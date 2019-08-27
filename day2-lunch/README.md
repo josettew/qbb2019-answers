@@ -6,7 +6,7 @@ Generate a quality control report
 	fastqu SRR072893.10k.fastq
 
 Map reads to BDGP6
-	hisat2 -p 4 -x BDGP6 -U SRR072893.10k.fastq
+	hisat2 -p 4 -x BDGP6 -U SRR072893.10k.fastq > SRR072893.10k.sam
 	
 Convert .sam to .bam
 	samtools sort -@ 4 SRR072893.10k.sam -o SRR072893.10k.bam
