@@ -18,3 +18,7 @@ Quantitate sorted .bam file
 
 Question 3:
 sort SRR072893.10k.gtf | cut -f 1 | uniq -c > SRR072893.10k.txt
+
+Question 4:
+a) samtools view SRR072893.sam | awk '{print NF}' | sort SRR072893.10k.gtf | cut -f 1 | uniq -c > SRR072893.columns
+b) the lines that have 20 or more columns have an alignment score and other alignment info whereas the lines that have fewer (12 or 13) columns might not align to anything 
