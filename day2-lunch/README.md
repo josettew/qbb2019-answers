@@ -1,5 +1,5 @@
 ##  Question 1:
-#####  Create da2-lunch/SRR072893.10k.fastq
+#####  Create day2-lunch/SRR072893.10k.fastq
 	head -n 40000 SRR072893.fastq > SRR072893.10k.fastq
 
 #####  Generate a quality control report
