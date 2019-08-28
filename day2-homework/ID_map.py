@@ -2,16 +2,21 @@
 
 import sys
 
+## Argument should be:
+    ## 1: fly_id_columns.txt (FB_ID and Uniprot_ID columns)
+    ## 2: t_data.ctab (comparison set of FB_IDs)
+    ## 3: either "default" or "nothing"
+
 gene_dict = {}
 
 for i, line in enumerate(open(sys.argv[1])):
     columns = line.rstrip("\n").split()
     gene_name = columns[0]
-    uniport = columns[1]
+    uniprot = columns[1]
     if gene_name in gene_dict:
         continue
     else:
-        gene_dict[gene_name] = uniport
+        gene_dict[gene_name] = uniprot
 
 for i, line in enumerate(open(sys.argv[2])):
     columns = line.split("\t")
