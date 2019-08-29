@@ -4,7 +4,7 @@
 Usage: ./00-scatter.py <ctab>
 Compare num_exons vs length
 """
-## run this:  ./02-scatter.py ../results/stringtie/SRR072893/t_data.ctab 
+## run this:  ./02-scatter.py ../results/stringtie/SRR072893/t_data.ctab ../results/stringtie/SRR72894/t_data.ctab
 
 import sys
 import matplotlib.pyplot as plt

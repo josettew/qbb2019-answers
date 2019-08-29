@@ -20,10 +20,10 @@ for ident, sequence in target:
 
   # print(target_dict)
 
-for ident, sequence in query:
-   sequence = sequence.upper()
-   for i in range(0, len(sequence) - k +1):
-       kmer = sequence[i:i+k]
+for ident, sequence1 in query:
+   sequence1 = sequence.upper()
+   for i in range(0, len(sequence1) - k +1):
+       kmer = sequence1[i:i+k]
        if kmer in target_dict:
            for ident, j in target_dict[kmer]:
                print(ident, j, i, kmer)

@@ -4,6 +4,7 @@
 *.bai
 *.fastq
 
+
 genomes
 rawdata
 results
