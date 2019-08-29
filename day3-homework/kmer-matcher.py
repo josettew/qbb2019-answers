@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
 
-
 from fasta import FASTAReader
 import sys
 
-target=FASTAReader(open(sys.argv[1]))
-query=FASTAReader(open(sys.argv[2]))
+target = FASTAReader(open(sys.argv[1])) #subset.fa
+query = FASTAReader(open(sys.argv[2])) #droYak2_seq.fa
+k = int(sys.argv[3])
 
-k=int(sys.argv[3])
-dic_target={}
+target_dict = {}
 
 for ident, sequence in target:
-   sequence=sequence.upper()
-   for i in range (0, len(sequence)-k+1):
-       kmertarget=sequence[i:i+k]
-       if kmertarget not in dic_target:
-           dic_target[kmertarget]=[(i,ident)]
+   sequence = sequence.upper()
+   for i in range(0, len(sequence) - k +1):
+       kmer = sequence[i:i+k]
+       if kmer in target_dict:
+           target_dict[kmer].append((ident,i))
        else:
-           dic_target[kmertarget].append((i, ident))
-           #print(dic_target)
+           target_dict[kmer]=[(ident,i)]
 
-for identifier, sequence1 in query:
-   sequence1=sequence1.upper()
-   for a in range(0,len(sequence1) -k +1):
-       kmerquery=sequence1[a:a+k]
-       if kmerquery in dic_target:
-           print(dic_target[kmerquery], str(a), kmerquery)
-            
+  # print(target_dict)
+
+for ident, sequence in query:
+   sequence = sequence.upper()
+   for i in range(0, len(sequence) - k +1):
+       kmer = sequence[i:i+k]
+       if kmer in target_dict:
+           for ident, j in target_dict[kmer]:
+               print(ident, j, i, kmer)
