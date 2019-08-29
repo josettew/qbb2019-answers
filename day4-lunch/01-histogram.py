@@ -13,16 +13,6 @@ import scipy.stats as stats
 import pandas as pd
 
 
-# fpkms = []
-# for i , line in enumerate(open(sys.argv[1])):
-#     if i == 0: #get rid of header
-#         continue
-#     fields = line.rstrip("\n").split("\t") #split each line and strip white space
-#     #filter out values of 0
-#     if float(fields[11]) > 0:
-#         fpkms.append(float(fields[11]))
-#
-# print(len(fpkms))
 
 ctab = pd.read_csv(sys.argv[1], sep = "\t")
 goi = ctab.loc[:, "FPKM"] > 0 
@@ -34,10 +24,12 @@ fig, ax = plt.subplots()
 a = float(sys.argv[2])
 loc = float(sys.argv[3])
 scale = float(sys.argv[4])
+loc_norm = float(sys.argv[5])
+scale_norm = float(sys.argv[6])
 x = np.linspace(-15, 15, 100)
 y = stats.skewnorm.pdf(x, a, loc, scale)
 
-y_norm = stats.norm.pdf(x, loc, scale)
+y_norm = stats.norm.pdf(x, loc_norm, scale_norm)
 ax.plot(x, y_norm)
 
 ax.hist(my_data, bins = 100, density = True)
