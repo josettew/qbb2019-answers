@@ -21,11 +21,11 @@ my_data = np.log2(ctab.loc[goi, "FPKM"])
 
 fig, ax = plt.subplots()
 
-a = float(sys.argv[2])
-loc = float(sys.argv[3])
-scale = float(sys.argv[4])
-loc_norm = float(sys.argv[5])
-scale_norm = float(sys.argv[6])
+a = float(sys.argv[2]) #-3.2
+loc = float(sys.argv[3]) #6.1
+scale = float(sys.argv[4]) #3.2
+loc_norm = float(sys.argv[5]) #4
+scale_norm = float(sys.argv[6]) #2
 x = np.linspace(-15, 15, 100)
 y = stats.skewnorm.pdf(x, a, loc, scale)
 
@@ -38,6 +38,6 @@ ax.plot(x,y,color="green")
 ax.set_title("Histogram For Lunch Exercise 1")
 ax.set_xlabel("log2 of fpkms")
 ax.set_ylabel("% of frequency")
-plt.text(-8, 0.15, 'a = %s\nloc = %s\nscale = %s'% (str(a), str(loc), str(scale)))
+plt.text(-8, 0.15, 'a = %s\nloc = %s\nscale = %s\nloc_norm = %s\nscale_norm = %s'% (str(a), str(loc), str(scale), str(loc_norm), str(scale_norm)))
 fig.savefig("fpkms.png")
 plt.close(fig)
