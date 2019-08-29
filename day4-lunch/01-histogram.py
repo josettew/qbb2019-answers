@@ -44,8 +44,8 @@ ax.hist(my_data, bins = 100, density = True)
 #add bell curve line to plot
 ax.plot(x,y,color="green")
 ax.set_title("Histogram For Lunch Exercise 1")
-ax.set_xlabel("log of fpkms")
+ax.set_xlabel("log2 of fpkms")
 ax.set_ylabel("% of frequency")
-
+plt.text(-8, 0.15, 'a = %s\nloc = %s\nscale = %s'% (str(a), str(loc), str(scale)))
 fig.savefig("fpkms.png")
 plt.close(fig)
