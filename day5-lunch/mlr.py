@@ -15,7 +15,7 @@ df3 = pd.read_csv(sys.argv[3], sep = "\t", index_col = 0, header = None) #t_name
 df4 = pd.read_csv(sys.argv[4], sep = "\t", index_col = 0, header = None)
 
 histone_dict = {"FPKM" : df.loc[:,"FPKM"],
-                "H3K4me1": df2.iloc[:,-1],  ##i to specify column name
+                "H3K4me1": df2.iloc[:,-1],  ##i to specify column
                 "H3K4me3": df3.iloc[:,-1],
                 "H3K9me3": df4.iloc[:,-1]}
                 
@@ -26,12 +26,6 @@ ols_result = model.fit()
 print(ols_result.summary())
 
 
-#goi = pd.DataFrame(df.loc[sys.argv[2]].iloc[1:])
-# goi.columns = ["FPKM"]
-# goi["FPKM"] = pd.to_numeric(goi["FPKM"])
-#
-# goi["sex"], goi["stage"] = goi.index.str.split("_",1).str #break column into 2 new columns
-# print(goi)
 
 
 
