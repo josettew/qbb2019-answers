@@ -9,7 +9,7 @@ import scipy
 
 #FBtr0302347
 
-## input is ./residuals.py ../results/stringtie/SRR072893/t_data.ctab H3K4me1.out H3K4me3.out H3K9me3.out
+## input is ./loglr.py ../results/stringtie/SRR072893/t_data.ctab H3K4me1.out H3K4me3.out H3K9me3.out
 
 df = pd.read_csv(sys.argv[1], sep = "\t", index_col = "t_name")
 df2 = pd.read_csv(sys.argv[2], sep = "\t", index_col = 0, header = None) #histone.out files do not have header
