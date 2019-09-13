@@ -1,0 +1,37 @@
+
+Inputs
+install velvent, SPAdes, lastz
+
+/Users/cmdb/qbb2019-answers/20190913class
+1) velveth VH 15 -fastq -shortPaired reads_low_1.fastq reads_low_2.fastq > velveth.out  
+	real	0m0.302s
+	user	0m0.485s
+	sys		0m0.446s
+	
+2) velvetg VH
+	real	0m0.137s
+	user	0m0.151s
+	sys		0m0.026s
+	
+3) time spades.py -s reads_low_1.fastq -s reads_low_2.fastq -o spades
+	real	0m3.201s
+	user	0m3.006s
+	sys		0m1.137s
+	
+4) time ./contigs.py < spades/contigs.fasta  
+	real	0m0.048s
+	user	0m0.027s
+	sys		0m0.010s
+
+5) velveth VH2 15 -fastq reads_1.fastq reads_2.fastq > velveth2.out
+ lastz reference.fasta VH2/contigs.fa --chain --format=general > vh2.out
+	real	0m7.296s
+	user	0m20.379s
+	sys		0m0.734s
+	
+6) spades.py -s reads_1.fastq -s reads_2.fastq -o spades2
+lastz reference.fasta spades2/contigs.fasta --chain --format=general > spades2.out
+
+7) ./config5.py < MAP006.subset.fa  > map006.out
+
+
