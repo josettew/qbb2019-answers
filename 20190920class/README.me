@@ -1,0 +1,54 @@
+Getting Data and formatting data
+wget http://67.207.142.119/outgoing/BYxRM_subset.tar.xv
+wget http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz
+
+tar -xvzf BYxRM_subset.tar.xv 
+tar -xvzf chromFa.tar.gz
+cat *.fa > ref.fa
+bwa index ref.fa
+
+Alignment
+bwa mem -R "@RG\tID:A01_09\tSM:A01_09" ref.fa A01_09.fastq > A01_09.sam
+bwa mem -R "@RG\tID:A01_11\tSM:A01_11" ref.fa A01_11.fastq > A01_11.sam
+bwa mem -R "@RG\tID:A01_23\tSM:A01_23" ref.fa A01_23.fastq > A01_23.sam
+bwa mem -R "@RG\tID:A01_24\tSM:A01_24" ref.fa A01_24.fastq > A01_24.sam
+bwa mem -R "@RG\tID:A01_27\tSM:A01_27" ref.fa A01_27.fastq > A01_27.sam
+bwa mem -R "@RG\tID:A01_31\tSM:A01_31" ref.fa A01_31.fastq > A01_31.sam
+bwa mem -R "@RG\tID:A01_35\tSM:A01_35" ref.fa A01_35.fastq > A01_35.sam
+bwa mem -R "@RG\tID:A01_39\tSM:A01_39" ref.fa A01_39.fastq > A01_39.sam
+bwa mem -R "@RG\tID:A01_62\tSM:A01_62" ref.fa A01_62.fastq > A01_62.sam
+bwa mem -R "@RG\tID:A01_63\tSM:A01_63" ref.fa A01_63.fastq > A01_63.sam
+
+samtools sort A01_09.sam > A01_09.bam
+samtools index A01_09.bam
+samtools sort A01_11.sam > A01_11.bam
+samtools index A01_11.bam
+samtools sort A01_23.sam > A01_23.bam
+samtools index A01_23.bam
+samtools sort A01_24.sam > A01_24.bam
+samtools index A01_24.bam
+samtools sort A01_27.sam > A01_27.bam
+samtools index A01_27.bam
+samtools sort A01_31.sam > A01_31.bam
+samtools index A01_31.bam
+samtools sort A01_35.sam > A01_35.bam
+samtools index A01_35.bam
+samtools sort A01_39.sam > A01_39.bam
+samtools index A01_39.bam
+samtools sort A01_62.sam > A01_62.bam
+samtools index A01_62.bam
+samtools sort A01_63.sam > A01_63.bam
+samtools index A01_63.bam
+
+Variant Calling: filter based on genotype quality and decompose complex haplotypes
+freebayes -f ref.fa -p 1 *.bam | vcffilter -f "QUAL > 20" | vcfallelicprimitives -kg > variants.vcf 
+
+wget http://sourceforge.net/projects/snpeff/files/snpEff_latest_core.zip
+unzip snpEff_latest_core.zip
+
+Effect Prediction
+snpEff download R64-1-1.86
+snpEff R64-1-1.86 variants.vcf > variant_consequence.vcf
+ 
+
+
